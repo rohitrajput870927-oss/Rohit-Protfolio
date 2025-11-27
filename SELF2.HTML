@@ -1,297 +1,640 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Rohit Singh | Portfolio</title>
-  <!-- <link rel="stylesheet" href="style2.css" /> -->
-  <style>
-  body {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 0;
-  padding: 0;
-  
-  background: #f4f4f4;
-  color: #333;
- 
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohit Kumar Singh - Developer Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #007bff; /* Base Blue */
+            --secondary-color: #212529; /* Dark text */
+            --header-bg: #0056b3; /* NEW: Darker Blue for Header */
+            --footer-bg: #495057; /* NEW: Dark Grey for Footer */
+            --background-light: #f8f9fa; /* Light background */
+            --background-dark: #343a40; /* Hero Section Background */
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: var(--secondary-color);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section:nth-child(even) {
+            background-color: var(--background-light);
+        }
+
+        h2, h3, h4 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+            font-size: 2em;
+            border-bottom: 3px solid var(--primary-color);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin: 0 auto 40px auto;
+            width: fit-content;
+            display: block;
+        }
+
+        /* Button Styling */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn.primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn.primary:hover {
+            background-color: #0056b3;
+        }
+
+        /* Header/Navigation */
+        header {
+            background-color: var(--header-bg); /* UPDATED */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Slightly stronger shadow */
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            color: white; /* Changed color for contrast on dark header */
+            margin: 0;
+        }
+
+        nav a {
+            color: #ccc; /* Lighter color for links */
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--background-dark);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; /* Ensures perfect circle */
+            border: 5px solid white; /* White border for contrast */
+            margin-bottom: 25px;
+            object-fit: cover;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4); 
+        }
+
+        .hero h2 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .skill-category h4 {
+            color: var(--primary-color);
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        
+        /* New Skill Bar Styling */
+        .skill-item {
+            margin-bottom: 15px;
+        }
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .progress-bar {
+            background-color: #e9ecef;
+            border-radius: 5px;
+            overflow: hidden;
+            height: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary-color);
+            transition: width 1s ease-in-out;
+            width: 0%; 
+        }
+
+        /* Projects Section */
+        .projects-section {
+            text-align: center;
+        }
+
+        .project-card {
+            background: white;
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .project-date {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tech-stack {
+            margin-top: 15px;
+            font-size: 0.9em;
+            color: #495057;
+        }
+
+        /* Experience & Education Section (List Style) */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 0;
+        }
+
+        .timeline-item {
+            padding: 10px 0;
+            position: relative;
+            width: 100%;
+            margin-bottom: 20px;
+            border-left: 3px solid #ccc; 
+            padding-left: 20px;
+            text-align: left !important;
+        }
+
+        .timeline-item h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Contact Footer */
+        footer {
+            background-color: var(--footer-bg); /* UPDATED */
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        footer h3 {
+            color: white;
+            border-bottom-color: white;
+        }
+
+        .contact-info p, .contact-info a {
+            color: #ccc;
+            margin: 5px 0;
+            text-decoration: none;
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        .contact-info a {
+             color: #ccc;
+             transition: color 0.3s;
+        }
+        .contact-info a:hover {
+            color: var(--primary-color);
+        }
 
 
+        .contact-info i {
+            margin-right: 8px;
+            color: var(--primary-color);
+        }
 
-header {
-  background: #2d2dff;
-  color: white;
-  padding: 2rem;
-  text-align: center;
-}
+        .copyright {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #adb5bd;
+        }
 
-.profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  border: 4px solid white;
-  margin-bottom: 1rem;
-}
+        /* Modal/Popup Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 700px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .modal-content h4 {
+            font-size: 1.8em;
+        }
 
-nav {
-  background: #444;
-  text-align: center;
-  padding: 1rem;
-}
+        /* Scroll to Top Button */
+        #scrollToTopBtn {
+            display: none; 
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        #scrollToTopBtn:hover {
+            background-color: #0056b3;
+        }
 
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
-  font-weight: bold;
-}
-nav a:hover {
-  text-decoration: underline;
-}
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            nav a {
+                margin-left: 10px;
+                font-size: 0.9em;
+            }
 
-section {
-  padding: 2rem;
-  background: white;
-  margin: 1rem auto;
-  max-width: 900px;
-  border-radius: 8px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease-in-out;
-}
-section:hover {
-  transform: scale(1.02);
-}
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  justify-items: center;
-  text-align: center;
-}
-
-.skill-card {
-  background: #f0f0f0;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease-in-out;
-}
-
-.skill-card:hover {
-  transform: scale(1.05);
-}
-
-.skill-card img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-
-ul {
-  list-style-type: square;
-  padding-left: 1.5rem;
-}
-
-a[href$=".pdf"] {
-  display: inline-block;
-  background: #2d2dff;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  margin-top: 1rem;
-  text-decoration: none;
-}
-
-form {
-  max-width: 400px;
-  margin: auto;
-}
-input, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.profile-wrapper {
-  position: relative;
-  width: 220px;
-  height: 220px;
-  margin: 0 auto 2rem;
-}
-
-.profile-wrapper::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  background: conic-gradient(#2d2dff, #00d4ff, #2d2dff);
-  animation: rotateBorder 4s linear infinite;
-  z-index: 0;
-}
-
-.profile-img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 6px solid white;
-  box-shadow: 0 0 20px rgba(0, 140, 255, 0.7);
-  position: relative;
-  z-index: 1;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-
-.profile-img:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 35px rgba(0, 140, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.6);
-}
-
-@keyframes rotateBorder {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-button {
-  background: #2d2dff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-button:hover {
-  background: #1a1aff;
-}
-
-footer {
-  background: #222;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-</style>
-  
-  
+            .hero h2 {
+                font-size: 2em;
+            }
+            
+            /* Smaller profile image on mobile */
+            .profile-image {
+                width: 100px; 
+                height: 100px;
+            }
+        }
+    </style>
 </head>
-<script>
-  const profileImg = document.querySelector('.animated-img');
-  let isGlowing = true;
-
-  setInterval(() => {
-    profileImg.style.boxShadow = isGlowing
-      ? "0 0 35px rgba(0, 140, 255, 0.9), 0 0 15px rgba(255, 255, 255, 0.6)"
-      : "0 0 20px rgba(0, 140, 255, 0.7)";
-    isGlowing = !isGlowing;
-  }, 1000);
-</script>
-
-
 <body>
 
-  <header>
-    <!-- <img src="/profile_image.jpg.jpg" alt="Rohit Singh Photo" width="300"> -->
-    <h1>Rohit Singh</h1>
-    <p>Student | C++ Developer | Web Learner</p>
-  </header>
+    <button id="scrollToTopBtn" title="Go to top"><i class="fas fa-arrow-up"></i></button>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+    <header>
+        <div class="container">
+            <h1 class="logo">ROHIT KUMAR SINGH</h1>
+            <nav>
+                <a href="#summary">Summary</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="profile-wrapper">
-  <img src="/profile_image.jpg.jpg" alt="Rohit Singh" class="profile-img animated-img" />
-</div>
+    <section id="hero" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="/profile_image.jpg.jpg" alt="Rohit Kumar Singh" class="profile-image">
+                <h2>DEVELOPER</h2>
+                <p>Highly motivated Full-Stack Developer skilled in building efficient and scalable applications using C, C++, Python, JavaScript, and modern web technologies.</p>
+                <a href="#projects" class="btn primary">View My Projects</a>
+            </div>
+        </div>
+    </section>
 
-    <!-- <img src="/profile_image.jpg.jpg" alt="Rohit Singh Photo" width="300"> -->
-    <p>
-      Hello! I'm Rohit Kumar Singh from Bihar — a dedicated student learning C, C++, Python, and Web Development. I'm building games, websites, and working towards a tech-savvy future .
-    </p>
-    <p><b>Name:</b>Rohit Kumar Singh</p>
-    <p><b>Data of birth:</b>02/01/2007</p>
-    <p><b>Address:</b>Masrakh,Chhapra,Bihar India</p>
-    <p><b>Pin-Code:</b>841417</p>
-    <p><b>Email:</b>rohitrajput870917@gmail.com</p>
-    <p><b>Phone:</b>8709270525</p>
-    
-    <!-- <a href="resume.pdf" download>📄 Download Resume</a> -->
-  </section>
+    <section id="summary" class="section">
+        <div class="container">
+            <h3>About Me</h3>
+            <p>Experienced in creating responsive front-end interfaces, developing secure back-end systems, and working with databases using SQL. Strong understanding of DSA, problem-solving, and debugging with the ability to write clean, optimized code. Passionate about building user-centric solutions and continuously improving technical skills through consistent practice and project work.</p>
+        </div>
+    </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>C / C++</li>
-      <li>Python</li>
-      <li>HTML / CSS / JavaScript</li>
-      <li>My SQL</li>
-      <li>DBMS</li>
-    </ul>
-  
-  <div class="skills-grid">
-  <div class="skill-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/ISO_C%2B%2B_Logo.svg" alt="C++" />
-    <p>C / C++</p>
-  </div>
-  <div class="skill-card">
-    <img src="https://www.python.org/static/community_logos/python-logo.png" alt="Python" />
-    <p>Python</p>
-  </div>
-  <div class="skill-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg" alt="HTML" />
-    <p>HTML</p>
-  </div>
-  <div class="skill-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" alt="CSS" />
-    <p>CSS</p>
-  </div>
-  <div class="skill-card">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript" />
-    <p>JavaScript</p>
-  </div>
-  <div class="skill-card">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNj8evU8QnY2AdV6ICXejLBqepahXt0sx8LZKv3tsVkU636PDwx4CJYbQKmxu2FrjMuvk&usqp=CAU" alt="GitHub" />
-    <p>My SQL</p>
-  </div>
-</div>
-</section>
+    <section id="skills" class="section skills-section">
+        <div class="container">
+            <h3>Professional & Technical Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Technical Stack</h4>
+                    <div class="skill-item" data-level="90"> 
+                        <div class="skill-name"><span>HTML/CSS/JS</span><span class="skill-percent">90%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-skill="HTML/CSS/JS"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="80">
+                        <div class="skill-name"><span>React / Node.js</span><span class="skill-percent">80%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-skill="React / Node.js"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="85">
+                        <div class="skill-name"><span>C, C++, OOP, DSA</span><span class="skill-percent">85%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-skill="C, C++, OOP, DSA"></div></div>
+                    </div>
+                    <div class="skill-item" data-level="75">
+                        <div class="skill-name"><span>SQL / MySQL</span><span class="skill-percent">75%</span></div>
+                        <div class="progress-bar"><div class="progress-fill" data-skill="SQL / MySQL"></div></div>
+                    </div>
+                </div>
 
+                <div class="skill-category">
+                    <h4>Soft Skills</h4>
+                    <ul>
+                        <li>Problem-solving & logical thinking</li>
+                        <li>Team collaboration & communication</li>
+                        <li>Task prioritization</li>
+                        <li>Works well independently, Time management</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Certifications & Cloud</h4>
+                    <ul>
+                        <li>AWS Academy Cloud Architecting</li>
+                        <li>AWS Cloud Foundations</li>
+                        <li>Oracle SQL certification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- <section id="projects">
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Car Dodging Game (C++)</strong> – A simple 2D game using C++ and logic programming</li>
-      <li><strong>Zomato Clone</strong> – HTML/CSS/JS based responsive restaurant search UI</li>
-     
-    </ul>
-  </section> -->
+    <section id="projects" class="section projects-section">
+        <div class="container">
+            <h3>Featured Projects</h3>
+            <div class="project-card" onclick="openModal('disaster')">
+                <h4>Disaster Preparedness & Response Education System (Click for details)</h4>
+                <p class="project-date">Jan 2025 – Present</p>
+                <p>A full-stack web platform designed for schools and colleges to teach disaster awareness and safety.</p>
+                <p class="tech-stack">**Tech:** HTML, CSS, JavaScript, React, Node.js, and SQL.</p>
+            </div>
+            <div class="project-card" onclick="openModal('carGame')">
+                <h4>3D Car Dodging Game (C++) (Click for details)</h4>
+                <p>Developed in C++ using object-oriented programming, featuring smooth player controls, obstacle generation, collision detection, and a dynamic scoring system.</p>
+                <p class="tech-stack">**Tech:** C++, OOP</p>
+            </div>
+        </div>
+    </section>
 
-  <section id="contact">
-    <h2>Contact Me</h2>
-    <form>
-      <label>Name:</label><br />
-      <input type="text" required /><br />
-      <label>Email:</label><br />
-      <input type="email" required /><br />
-      <label>Message:</label><br />
-      <textarea rows="4" required></textarea><br /><br />
-      <button type="submit">Send</button>
-    </form>
-  </section>
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <h3>Experience & Education</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Full-Stack Project Experience</h4>
+                    <p>Gained experience in frontend development using HTML, CSS, JavaScript, and React, along with backend development using Node.js and SQL. Also worked with C++ and OOP to build game mechanics, collision detection, scoring logic, and rendering optimization.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Bachelor of Computer Applications (BCA)</h4>
+                    <p>Galgotias University (2024-2027)</p>
+                    <p>Ranked in the Top 10 of the class, with SGPA 7.6 in the first semester and 8.2 in the second semester.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>High School & Intermediate</h4>
+                    <p>Class XII (Bihar Board, 2024) with a score of 72%. Class X (Bihar Board, 2022) with a score of 76%.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>© 2025 Rohit Singh | Portfolio Website</p>
-  </footer>
+    <footer id="contact">
+        <div class="container">
+            <h3>Get In Touch</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> Location: India</p>
+                <p><i class="fas fa-envelope"></i> rohitrajput870927@gmail.com</p>
+                <p><i class="fas fa-phone"></i> 8709270525</p>
+                <a href="https://www.linkedin.com/in/rohit00abc" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+            <p class="copyright">&copy; 2025 Rohit Kumar Singh. All rights reserved.</p>
+        </div>
+    </footer>
 
+    <div id="disasterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('disaster')">&times;</span>
+            <h4>Disaster Preparedness & Response Education System</h4>
+            <p>**Duration:** Jan 2025 – Present</p>
+            <p>**Goal:** A full-stack web platform designed for schools and colleges to teach disaster awareness and safety.</p>
+            <p>**Tech Stack:** HTML, CSS, JavaScript, React (Frontend), Node.js (Backend), SQL (Database).</p>
+            <p>**Key Features:** Interactive learning modules, real-time alert system simulation, quizzes/assessments, and a fully responsive user interface.</p>
+            <p>This project demonstrated strong skills in API integration, full-stack development, and creating user-centric educational tools.</p>
+        </div>
+    </div>
+
+    <div id="carGameModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('carGame')">&times;</span>
+            <h4>3D Car Dodging Game (C++)</h4>
+            <p>**Tech Stack:** C++, Object-Oriented Programming (OOP).</p>
+            <p>**Goal:** Developed using object-oriented programming, featuring smooth player controls, obstacle generation, collision detection, and a dynamic scoring system.</p>
+            <p>**Key Features:** Includes a 3D environment with basic animations and optimized rendering for better performance, designed to provide an engaging and fast-paced gaming experience.</p>
+            <p>This project focused heavily on low-level performance optimization and implementing complex game logic using C++ and OOPS concepts.</p>
+        </div>
+    </div>
+
+    <script>
+        // 1. Smooth Scrolling for Navigation
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - document.querySelector('header').offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 2. Skill Progress Bar Animation
+        const skillSection = document.getElementById('skills');
+        const skillItems = document.querySelectorAll('.skill-item');
+        let animated = false;
+
+        const animateSkills = () => {
+            if (animated) return;
+
+            skillItems.forEach(item => {
+                const level = item.getAttribute('data-level');
+                const fill = item.querySelector('.progress-fill');
+                
+                // Set the width based on the data-level percentage
+                fill.style.width = level + '%';
+            });
+            animated = true;
+        };
+
+        // Observe the skill section to start animation when it comes into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateSkills();
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the section is visible
+
+        if (skillSection) {
+            observer.observe(skillSection);
+        }
+
+        // 3. Modal Functions (Project Popups)
+        function openModal(projectId) {
+            let modal;
+            if (projectId === 'disaster') {
+                modal = document.getElementById('disasterModal');
+            } else if (projectId === 'carGame') {
+                modal = document.getElementById('carGameModal');
+            }
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function closeModal(projectId) {
+            let modal;
+            if (projectId === 'disaster') {
+                modal = document.getElementById('disasterModal');
+            } else if (projectId === 'carGame') {
+                modal = document.getElementById('carGameModal');
+            }
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Restore background scrolling
+            }
+        }
+        
+        // Close the modal if the user clicks anywhere outside of it
+        window.onclick = function(event) {
+            const disasterModal = document.getElementById('disasterModal');
+            const carGameModal = document.getElementById('carGameModal');
+            if (event.target === disasterModal) {
+                closeModal('disaster');
+            } else if (event.target === carGameModal) {
+                closeModal('carGame');
+            }
+        }
+
+        // 4. Scroll to Top Button
+        const scrollBtn = document.getElementById("scrollToTopBtn");
+
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                scrollBtn.style.display = "block";
+            } else {
+                scrollBtn.style.display = "none";
+            }
+        }
+
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
